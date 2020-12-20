@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { motion, Variants } from 'framer-motion'
+import { useRouter } from 'next/router';
 
 import api from '../services/api';
 
 const login: React.FC = () => {
+  const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,8 +16,11 @@ const login: React.FC = () => {
     const data = {email, password};
 
     try{
-      await api.post('sessions', data);
+      const response = await api.post('sessions', data);
+
+      localStorage.setItem('tokenId', response.data.token);
       alert('Login realizado com sucesso!');
+      router.push('/user');
     }catch(e){
       alert('Falha no login, tente novamente.');
     }
