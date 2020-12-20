@@ -1,27 +1,19 @@
 import Imagem from 'next/image';
 import { useState } from 'react';
+import { motion, Variants } from 'framer-motion'
 
 const Create: React.FC = () => {
-  const [avatar, setAvatar] = useState('/img/user.png');
-
-  console.log(avatar)
-
   return (
     <div className="flex flex-1 justify-center items-center h-screen w-screen bg-gray-900">
       <form className="flex justify-center items-center flex-col">
-        <Imagem 
-          className="rounded-full"
-          src={`${avatar}`}
-          alt="users logo" 
-          width={200} 
-          height={200}
+        <motion.img 
+          className="h-80 w-80 -m-28"
+          src="/img/login.svg" 
+          layoutId="logoLogin"
         />
-        <br/>
         <input
           className="text-white m-2 bg-gray-500 text-gray-50 px-6 py-3 text-lg font-semibold rounded-xl hover:bg-gray-700 "
           placeholder="avatar (url)"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
         />
         <input
           className="text-white m-2 bg-gray-500 text-gray-50 px-6 py-3 text-lg font-semibold rounded-xl hover:bg-gray-700 "
@@ -29,10 +21,12 @@ const Create: React.FC = () => {
         />
         <input
           className="text-white m-2 bg-gray-500 text-gray-50 px-6 py-3 text-lg font-semibold rounded-xl hover:bg-gray-700 "
+          type="email"
           placeholder="email"
         />
         <input
           className="text-white m-2 bg-gray-500 text-gray-50 px-6 py-3 text-lg font-semibold rounded-xl hover:bg-gray-700 "
+          type="password"
           placeholder="senha"
         />
 
