@@ -2,11 +2,15 @@ import "tailwindcss/tailwind.css";
 import '../styles/globals.css'
 import { AnimateSharedLayout } from 'framer-motion'
 
+import { AuthProvider } from '../pages/_auth';
+
 function MyApp({ Component, pageProps }) {
   return (
-  <AnimateSharedLayout>
-    <Component {...pageProps} />
-  </AnimateSharedLayout>
+  <AuthProvider>
+    <AnimateSharedLayout>
+      <Component {...pageProps} />
+    </AnimateSharedLayout>
+  </AuthProvider>
   )
 }
 

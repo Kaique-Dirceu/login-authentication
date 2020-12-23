@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
-import Imagem from 'next/image';
 import api from '../services/api';
 
 const user: React.FC = () => {
-  const [profile, setProfile] = useState([]);
-  const [attributes, setAtributes] = useState([]);
- 
   const [avatar, setAvatar] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
   const token = localStorage.getItem('tokenId');
-  
 
   useEffect(() => {
     api.get('authenticated', {

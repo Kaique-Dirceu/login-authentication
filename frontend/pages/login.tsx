@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import { motion, Variants } from 'framer-motion'
+import { useState, useContext } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
+import AuthContext from './_auth';
 
 import api from '../services/api';
 
 const login: React.FC = () => {
+  const {signed} = useContext(AuthContext);
+
   const router = useRouter();
 
   const [email, setEmail] = useState('');
