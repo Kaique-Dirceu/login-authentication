@@ -1,39 +1,57 @@
 import { useState, useContext } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
-import AuthContext from './_auth';
+// import AuthContext from './_auth';
+import { Context } from './_authContext';
 
 import api from '../services/api';
 
 const login: React.FC = () => {
-  const {signed} = useContext(AuthContext);
-
+  // const { signed, user, signIn } = useContext(AuthContext);
+  // console.log(signed);
+  // console.log(user);
+  //------------------------------
   const router = useRouter();
+
+  const { autheticated, handleLogin } = useContext(Context);
+  console.log(autheticated);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleLogin(e) {
-    e.preventDefault();
-
-    const data = {email, password};
-
-    try{
-      const response = await api.post('sessions', data);
-
-      localStorage.setItem('tokenId', response.data.token);
-      alert('Login realizado com sucesso!');
-      router.push('/user');
-    }catch(e){
-      alert('Falha no login, tente novamente.');
+  async function signIn(e){
+      e.preventDefault();
+  
+      handleLogin({email, password});
     }
-  }
+  
+  // async function handleLogin(e){
+  //   e.preventDefault();
+
+  //   signIn({email, password});
+  // }
+  //---------------------------
+  // async function handleLogin(e) {
+  //   e.preventDefault();
+
+  //   const data = {email, password};
+
+  //   try{
+  //     const response = await api.post('sessions', data);
+
+  //     localStorage.setItem('tokenId', response.data.token);
+  //     alert('Login realizado com sucesso!');
+  //     router.push('/user');
+  //   }catch(e){
+  //     alert('Falha no login, tente novamente.');
+  //   }
+  // }
 
   return (
     <div className="flex flex-1 justify-center items-center h-screen w-screen bg-gray-900">
       <form 
         className="flex justify-center items-center flex-col"
-        onSubmit={handleLogin}
+        onSubmit={signIn}
       >
         <motion.img 
           className="h-80 w-80 -m-28"

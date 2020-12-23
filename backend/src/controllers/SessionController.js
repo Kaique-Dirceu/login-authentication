@@ -22,7 +22,11 @@ class SessionController {
     return res.json({
       token: jwt.sign({ userId: user._id }, process.env.APP_SECRET, {
         expiresIn: '7d'
-      })
+      }),
+      user: {
+        name: user.name,
+        email: user.email
+      }
     })
   }
 }
