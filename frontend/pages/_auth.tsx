@@ -52,7 +52,7 @@ export const AuthProvider: React.FC = ({children}) => {
   }
 
   async function signOut() {
-    // localStorage.clear()
+    localStorage.clear()
     // localStorage.removeItem('@api-login:user');
     // localStorage.removeItem('@api-login:user');
     setUser(null);

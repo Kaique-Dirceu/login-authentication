@@ -33,10 +33,6 @@ function AuthProvider({ children }) {
     try{
       const response = await api.post('sessions', data);
 
-      // api.defaults.headers.authorization = `Bearer ${response.data.token}`
-      
-      // localStorage.setItem('@api-login:user', JSON.stringify(response.data.user));
-      // localStorage.setItem('@api-login:token', (response.data.token));
       localStorage.setItem('token', JSON.stringify(response.data.token))
       api.defaults.headers.authorization = `Bearer ${response.data.token}`;
       setAuthenticated(true);
@@ -54,11 +50,14 @@ function AuthProvider({ children }) {
     api.defaults.headers.authorization = undefined;
 
     router.push('/login');
-    console.log('Ferrou!');
   }
 
   if (loading) {
-    return <h1>loading...</h1>
+    return (
+    <div className="flex flex-1 justify-center items-center h-screen w-screen bg-gray-900">
+      <h3 className="text-gray-300 font-bold text-3xl">loading...</h3>
+    </div>
+    );
   }
 
   return(
